@@ -6,6 +6,8 @@ import { format, transports } from "winston";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { LoggerMiddleware } from "./middlewares/logger.middleware";
+import { UserModule } from "./modules/user.module";
+import { User } from "./entities/user.entity";
 
 const { combine, timestamp, label, printf } = format;
 
@@ -13,7 +15,7 @@ const myFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}] : ${message}`;
 });
 
-const entities = [];
+const entities = [User];
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -38,7 +40,8 @@ const entities = [];
         }),
       ],
     }),
-  ],
+        UserModule
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
