@@ -8,6 +8,8 @@ import { AppService } from "./app.service";
 import { LoggerMiddleware } from "./middlewares/logger.middleware";
 import { UserModule } from "./modules/user.module";
 import { User } from "./entities/user.entity";
+import { ProductModule } from "./modules/product.module";
+import { Product } from "./entities/product.entity";
 
 const { combine, timestamp, label, printf } = format;
 
@@ -15,7 +17,7 @@ const myFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}] : ${message}`;
 });
 
-const entities = [User];
+const entities = [User, Product];
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -40,7 +42,8 @@ const entities = [User];
         }),
       ],
     }),
-        UserModule
+        UserModule,
+        ProductModule
     ],
   controllers: [AppController],
   providers: [AppService],
