@@ -10,6 +10,8 @@ import { UserModule } from "./modules/user.module";
 import { User } from "./entities/user.entity";
 import { ProductModule } from "./modules/product.module";
 import { Product } from "./entities/product.entity";
+import { StudentModule } from "./modules/student.module";
+import { Student } from "./entities/student.entity";
 
 const { combine, timestamp, label, printf } = format;
 
@@ -17,7 +19,7 @@ const myFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}] : ${message}`;
 });
 
-const entities = [User, Product];
+const entities = [User, Product, Student];
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -43,7 +45,8 @@ const entities = [User, Product];
       ],
     }),
         UserModule,
-        ProductModule
+        ProductModule,
+        StudentModule
     ],
   controllers: [AppController],
   providers: [AppService],
