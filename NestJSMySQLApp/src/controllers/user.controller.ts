@@ -31,7 +31,7 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() user: Partial<User>) {
+  create(@Body() user: <User>) {
     return this.userService.create(user);
   }
 
